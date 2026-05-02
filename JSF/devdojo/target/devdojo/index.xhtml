@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-BR"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <p:importEnum type="br.com.model.enums.Turno"
+                  var="Turno"
+                  allSuffix="ALL_ENUM_VALUES"
+    />
+
+
+    <h1>Oi</h1>
+    <h:outputLabel value="#{estudanteRegistrarBean.estudanteDTO.nome}"/><br/>
+    <h:outputLabel value="#{estudanteRegistrarBean.estudanteDTO['sobrenome']}"/><br/>
+    <h:outputLabel value="#{estudanteRegistrarBean.estudanteDTO.nota1 eq estudanteRegistrarBean.estudanteDTO.nota3}"/><br/>
+    <h:outputLabel value="#{estudanteRegistrarBean.estudanteDTO.nota1 eq estudanteRegistrarBean.estudanteDTO.nota2}"/><br/>
+    <h:outputLabel value="#{estudanteRegistrarBean.estudanteDTO.nota1 eq estudanteRegistrarBean.estudanteDTO.nota2 and estudanteRegistrarBean.estudanteDTO.nome.equals('Josefa')}"/><br/>
+
+    <h:outputText value="ENUM"/><br/>
+    <h1>Turno:</h1>
+    <h:outputLabel value="#{estudanteRegistrarBean.estudanteDTO.turno eq Turno.MATUTINO}"/><br/>
+
+    <h2>Nomes: Array</h2>
+    <h:outputLabel value="#{estudanteRegistrarBean.nomes[0]}"/><br/>
+    <h:outputLabel value="#{estudanteRegistrarBean.nomes[1]}"/><br/>
+
+    <h3>For each  </h3>
+    <ui:repeat value="#{estudanteRegistrarBean.nomes}" var="nome">
+        <h:outputLabel value="#{nome}"/><br/>
+    </ui:repeat>
+
+
+    <h3>
+        Lista
+    </h3>
+
+    <h:outputLabel value="#{estudanteRegistrarBean.nomesList[0]} #{estudanteRegistrarBean.nomesList[1]}"/><br/>
+
+    <h1>Set</h1>
+
+    <ui:repeat value="#{estudanteRegistrarBean.nomesSet.toArray()}" var="nome">
+        <h:outputLabel value="#{nome}"/><br/>
+    </ui:repeat>
+
+    <h1>Map</h1>
+
+    <h:outputLabel value="#{estudanteRegistrarBean.nomesMap.get('Goku')}" var="nome"/>
+    <br/>
+    <h:outputLabel value="#{estudanteRegistrarBean.nomesMap}" var="nome"/>
+
+
+    <ui:repeat value="#{estudanteRegistrarBean.nomesMap.entrySet().toArray()}" var="entry">
+        <h:outputLabel value="#{entry.key} - #{entry.value}"/>
+        <br/>
+    </ui:repeat>
+
+    <!-- Executando métodos no Bean -->
+    #{estudanteRegistrarBean.executar("Negrinho")}
+    #{estudanteRegistrarBean.executar(estudanteRegistrarBean.estudanteDTO.nome)}
+    #{estudanteRegistrarBean.executarRetorno("Negrinho")}
+    #{estudanteRegistrarBean.executarRetorno(estudanteRegistrarBean.estudanteDTO.nome)}
+
+    <h:form>
+        <h:commandButton value="Próximo"
+                         action="#{estudanteRegistrarBean.irParaProxPag()}"
+        />
+    </h:form>
+    <br/>
+    <!-- Imprimindo CSS com EL  -->
+    <ui:repeat value="#{estudanteRegistrarBean.nomesMap.entrySet().toArray()}" var="entry"
+               varStatus="status">
+
+        <h:outputLabel value="#{entry.key} - #{entry.value}"
+                       style="color:#{status.index mod 2 == 0 ? 'blue' : 'red' }  "/>
+        <br/>
+    </ui:repeat >
+
+    <!--passando valores em Express Language no JavaScript-->
+    <h:commandButton value="soltar Magia" onclick="executarMagia('opa')"/><br/>
+    <h:commandButton value="soltar Nome" onclick="executarNome('#{estudanteRegistrarBean.estudanteDTO.nome}')"/>
+
+    <br/>
+
+
+
+    <h:form id="form">
+
+        <h:commandButton value="Mostrar Notas">
+            <f:ajax render="infoAluno"
+                    listener="#{estudanteRegistrarBean.exibicao}"/>
+        </h:commandButton>
+
+        <h:panelGrid id="infoAluno">
+            <h:outputText value="#{estudanteRegistrarBean.estudanteDTO.nome}"/>
+            <h:outputText value="#{estudanteRegistrarBean.estudanteDTO.sobrenome}"/>
+            <h:outputText value="#{estudanteRegistrarBean.estudanteDTO.turno}"/>
+
+            <h:outputText value="#{estudanteRegistrarBean.estudanteDTO.nota1}"
+                          rendered="#{estudanteRegistrarBean.mostrarNotas}"
+            />
+            <h:outputText value="#{estudanteRegistrarBean.estudanteDTO.nota2}"
+                          rendered="#{estudanteRegistrarBean.mostrarNotas}"
+            />
+            <h:outputText value="#{estudanteRegistrarBean.estudanteDTO.nota3}"
+                          rendered="#{estudanteRegistrarBean.mostrarNotas}"
+            />
+        </h:panelGrid>
+    </h:form>
+
+
+</h:body>
+<!-- Executando JavaScript -->
+<script type="text/javascript">
+    function executarMagia(magica) {
+        alert(magica);
+    }
+
+    function executarNome(nome) {
+        alert(nome);
+    }
+
+</script>
+</html>

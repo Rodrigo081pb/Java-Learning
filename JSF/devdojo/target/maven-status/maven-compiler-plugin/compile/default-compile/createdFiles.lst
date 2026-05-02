@@ -1,0 +1,3 @@
+br\com\model\enums\Turno.class
+br\com\bean\estudante\EstudanteRegistrarBean.class
+br\com\model\EstudanteDTO.class

@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"fdc03ce295178c47","x":-410,"y":-30,"width":580,"height":50,"color":"5","type":"text","text":"JVM"},
+		{"id":"a6817e49428e9233","x":-410,"y":-300,"width":185,"height":60,"color":"5","type":"text","text":"HelloWorld.java"},
+		{"id":"9b5e3d05b25b5e8d","x":-700,"y":-300,"width":250,"height":60,"color":"4","type":"text","text":"Quando criamos um arquivo java = classe"},
+		{"id":"f65281015a235557","x":-105,"y":-300,"width":250,"height":60,"color":"4","type":"text","text":"helloworld.class"},
+		{"id":"d2a058caa2cf8a22","x":-410,"y":60,"width":580,"height":160,"color":"5","type":"text","text":""},
+		{"id":"ca41c27fd16b0007","x":-375,"y":115,"width":115,"height":50,"color":"4","type":"text","text":"LINUX"},
+		{"id":"d2a1a2a87024fdf6","x":-187,"y":115,"width":135,"height":50,"color":"4","type":"text","text":"WINDOWS"},
+		{"id":"1bbc654d5d78b81d","x":20,"y":115,"width":118,"height":50,"color":"4","type":"text","text":"MacOS"}
+	],
+	"edges":[
+		{"id":"51906c94d8ad72ef","fromNode":"9b5e3d05b25b5e8d","fromSide":"right","toNode":"a6817e49428e9233","toSide":"left","color":"6"},
+		{"id":"7b26bf1de74d0d37","fromNode":"a6817e49428e9233","fromSide":"right","toNode":"f65281015a235557","toSide":"left","label":"compila"},
+		{"id":"05dacacbb8641892","fromNode":"f65281015a235557","fromSide":"bottom","toNode":"fdc03ce295178c47","toSide":"top","color":"5"},
+		{"id":"c0332d0e241ad881","fromNode":"a6817e49428e9233","fromSide":"top","toNode":"f65281015a235557","toSide":"top","color":"5","label":"Processo de bytecode"},
+		{"id":"2f8d78a616dc5b19","fromNode":"fdc03ce295178c47","fromSide":"bottom","toNode":"d2a058caa2cf8a22","toSide":"top","color":"4"}
+	]
+}
